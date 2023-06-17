@@ -1,0 +1,697 @@
+class Hangman
+{
+   field String solution;
+   field String hint;
+   field String correctGuesses;
+   field boolean endGame;
+   field int turn;
+   field int Player1Score;
+   field int Player2Score;
+   field String Player1;
+   field String Player2;
+   constructor Hangman new()
+   {
+	var int i;
+      var int answerLength;
+		var char a;
+		let Player1Score = 0;
+		let Player2Score = 0;
+
+		//H
+		do Screen.drawRectangle(36,26,52,106);
+		do Screen.drawRectangle(36,56,94,72);
+		do Screen.drawRectangle(78,26,94,106);
+
+		//A
+		do Screen.drawRectangle(115,26,159,38);
+		do Screen.drawRectangle(115,26,127,106);
+		do Screen.drawRectangle(147,38,159,106);
+		do Screen.drawRectangle(115,66,159,78);
+
+		//N
+		do Screen.drawRectangle(172,26,184,106);
+		do Screen.drawRectangle(172,26,216,38);
+		do Screen.drawRectangle(204,26,216,106);
+
+		//G
+		do Screen.drawRectangle(240,26,252,106);
+		do Screen.drawRectangle(240,26,288,38);
+		do Screen.drawRectangle(240,94,288,106);
+		do Screen.drawRectangle(276,66,288,106);
+
+		//M
+		do Screen.drawRectangle(270,135,335,147);
+		do Screen.drawRectangle(270,135,282,219);
+		do Screen.drawRectangle(323,135,335,219);
+		do Screen.drawRectangle(296,135,308,190);
+		
+		//A
+		do Screen.drawRectangle(355,135,399,147);
+		do Screen.drawRectangle(355,135,367,219);
+		do Screen.drawRectangle(387,135,399,219);
+		do Screen.drawRectangle(355,175,399,187);
+
+		//N
+		do Screen.drawRectangle(414,135,458,147);
+		do Screen.drawRectangle(414,135,426,219);
+		do Screen.drawRectangle(446,135,458,219);
+
+		do Output.moveCursor(5,38);
+		do Output.printString("ELEMENTS OF");
+		do Output.moveCursor(7,40);
+		do Output.printString("COMPUTING SYSTEMS - II");
+		do Output.moveCursor(12,3);
+		do Output.printString("PRANAV H BL.EN.U4AIE21105");
+		do Output.moveCursor(15,3);
+		do Output.printString("SURYAA E BL.EN.U4AIE21125");
+		do Output.moveCursor(18,3);
+		do Output.printString("THUSHAR S BL.EN.U4AIE21133");
+		do Output.moveCursor(21,3);
+		do Output.printString("PRESS ANY KEY TO START");	
+		let a = 0;
+		while(a = 0){
+		let a = Keyboard.keyPressed();}
+		do Screen.clearScreen();
+		do loading();
+		do instructions();
+
+
+      return this;
+   }
+   
+	//Loading screen
+	method void loading(){
+
+	var int i;
+	let i = 0;
+
+	while(i<4){
+	if((i/2)*2 = i){
+	do Screen.drawCircle(255,127,5);
+	do Screen.drawCircle(235,127,5);
+	do Screen.drawCircle(275,127,5);	
+	do Sys.wait(300);
+	do Screen.clearScreen();
+	}
+	else{
+	do Screen.drawCircle(245,127,5);
+	do Screen.drawCircle(265,127,5);
+	do Sys.wait(300);
+	do Screen.clearScreen();
+	}
+	let i = i + 1;
+	}
+
+	return;
+
+	}
+
+	//Instructions
+	method void instructions()
+	{
+		var int i;
+		var int j;
+		var char a;
+		let i = 0;
+		let j = 0;
+		while(i<22){
+			while(j<58){
+			do Output.moveCursor(i,j);
+			do Output.printString("HANGMAN");
+			let j = j + 8;
+			}
+		let j = 0;
+            let i = i + 2;
+		}
+	
+	do Sys.wait(1000);
+	do Screen.drawRectangle(80,20,431,215);
+	do Screen.setColor(false);
+	do Screen.drawRectangle(90,30,421,205);
+	do Screen.setColor(true);
+	do Output.moveCursor(3,12);
+	do Output.printString("Instructions");
+	do Output.moveCursor(5,12);
+	do Output.printString("HANGMAN is a two player game.");
+	do Output.moveCursor(6,12);
+	do Output.printString("One is Host and the other is Player");
+	do Output.moveCursor(7,12);
+	do Output.printString("The Host enters a word and a hint");
+	do Output.moveCursor(8,12);
+	do Output.printString("The Player tries to guess the word one");
+	do Output.moveCursor(9,12);
+	do Output.printString("letter at a time");
+	do Output.moveCursor(10,12);
+	do Output.printString("The Player has only 7 guesses and is");
+	do Output.moveCursor(11,12);
+	do Output.printString("given the hint on the 2 wrong guess");
+	do Output.moveCursor(13,30);
+	do Output.printString("Ready?");
+	do Output.moveCursor(15,20);
+	do Output.printString("Press any key to start");
+	
+	
+	let a = 0;
+	while(a = 0){
+	let a = Keyboard.keyPressed();}
+
+	
+	do Screen.drawRectangle(245,122,265,132);
+	let i = 0;
+	let j = 0;
+	while(~(230 - i = 0)){
+	do Screen.setColor(true);
+	do Screen.drawRectangle(240-i,125-j,260+i,135+j);
+	let i = i + 10;
+	let j = j + 5;
+	}
+	
+	do Screen.setColor(true);
+	do Screen.drawRectangle(0,0,511,255);
+	do Sys.wait(200);
+	do Screen.clearScreen();
+	return;
+}
+//Players name entry
+method void playerInput()
+	{
+		var int i;
+		var int j;
+		let i = 0;
+		let j = 0;
+		while(i<22){
+			while(j<58){
+			do Output.moveCursor(i,j);
+			do Output.printString("HANGMAN");
+			let j = j + 8;
+			}
+		let j = 0;
+            let i = i + 2;
+		}
+	
+	do Sys.wait(1000);
+	do Screen.drawRectangle(80,20,431,215);
+	do Screen.setColor(false);
+	do Screen.drawRectangle(90,30,421,205);
+	do Screen.setColor(true);
+	do Output.moveCursor(3,28);
+	do Output.printString("Player 1");
+	do player1(1616);
+	do Output.moveCursor(9,12);
+	do Output.printString("Enter name:");
+	do Output.moveCursor(10,12);
+	let Player1 = Keyboard.readLine("");
+	
+	do Screen.setColor(false);
+	do Screen.drawRectangle(90,30,421,205);
+	do Screen.setColor(true);
+
+	do Output.moveCursor(3,28);
+	do Output.printString("Player 2");
+	do player2(1616);
+	do Output.moveCursor(9,12);
+	do Output.printString("Enter name:");
+	do Output.moveCursor(10,12);
+	let Player2 = Keyboard.readLine("");
+
+	
+	do Screen.drawRectangle(245,122,265,132);
+	let i = 0;
+	let j = 0;
+	while(~(230 - i = 0)){
+	do Screen.setColor(true);
+	do Screen.drawRectangle(240-i,125-j,260+i,135+j);
+	let i = i + 10;
+	let j = j + 5;
+	}
+	
+	do Screen.setColor(true);
+	do Screen.drawRectangle(0,0,511,255);
+	do Sys.wait(200);
+	do Screen.clearScreen();
+	let turn = 0;
+	let Player1Score = 0;
+	let Player2Score = 0;
+	return;
+}
+	
+   //start and run the game.
+   method void run()
+   {
+      var int line, wrongGuesses,i;
+      var char guess;
+
+      let i = 0;
+	let turn = turn + 1;
+	if((turn/2)*2 = turn){
+	do Output.moveCursor(9,12);
+	do Output.printString("Player 1 enter word");
+	do player1(1615);
+	}
+	else{
+	do Output.moveCursor(9,12);
+	do Output.printString("Player 2 enter word");
+	do player2(1615);
+	}
+      do Output.moveCursor(18,3);
+      let solution = Keyboard.readLine("Enter the word:");
+	do Output.moveCursor(19,3);
+	let hint = Keyboard.readLine("Enter the hint:");
+	do Screen.clearScreen();
+      let correctGuesses = String.new(solution.length());
+      while(i < (solution.length()))
+      {
+         let correctGuesses = correctGuesses.appendChar(219);
+         let i = i+1; 
+      }
+	do Output.moveCursor(0,0);
+      do Output.printString("GUESSES");
+      do Output.println();
+
+      let wrongGuesses = 0;
+      let line = 3; 
+      let endGame = 0;
+      do drawHangPost();
+      
+      while(~(endGame))
+      {
+         do Output.printString(correctGuesses);
+         if(line = 19){do Screen.setColor(false); do Screen.drawRectangle(0,30,260,255);let line = 3;do Screen.setColor(true);}
+         do Output.moveCursor(line,15);
+         let line = line +1;
+	   let guess = Keyboard.readChar();
+         do Output.println();
+         if(~(isCorrectGuess(guess)))
+         {
+            if(wrongGuesses = 0)
+            {
+               do drawHead();
+            }
+            if(wrongGuesses = 1)
+            {
+               do drawTorso();
+		   do Output.moveCursor(0,20);
+		   do Output.printString("HINT:");
+		   do Output.printString(hint);
+		   do Output.moveCursor(line,0);
+            }
+            if(wrongGuesses = 2)
+            {
+               do drawRightArm();
+            }
+            if(wrongGuesses = 3)
+            {
+               do drawLeftArm();
+            }
+            if(wrongGuesses = 4)
+            {
+               do drawRightLeg();
+            }
+            if(wrongGuesses = 5)
+            {
+               do drawLeftLeg();
+		   do Screen.clearScreen();
+		do Output.moveCursor(3,15);
+		do Output.printString("The answer was:");
+		do Output.moveCursor(5,15);
+		do Output.printString(solution);
+		do Sys.wait(2000);
+		do Screen.clearScreen();
+		if((turn/2)*2 = turn){
+		let Player1Score = Player1Score + 1;
+		}
+		else{
+		let Player2Score = Player2Score + 1;
+		}
+      
+		   do gameover();
+            }
+
+            let wrongGuesses = wrongGuesses +1; 
+         }
+
+         if(isWin())
+         {
+		do Output.printString(solution);
+		do Screen.clearScreen();
+		if((turn/2)*2 = turn){
+		let Player2Score = Player2Score + 1;
+		}
+		else{
+		let Player1Score = Player1Score + 1;
+		}
+		do win();
+         }
+      }
+	let endGame = -1;
+      return;
+   }
+
+//Score board
+method void score()
+	{
+		var int i;
+		var int j;
+		let i = 0;
+		let j = 0;
+		while(i<22){
+			while(j<58){
+			do Output.moveCursor(i,j);
+			do Output.printString("HANGMAN");
+			let j = j + 8;
+			}
+		let j = 0;
+            let i = i + 2;
+		}
+	
+	do Sys.wait(1000);
+	do Screen.drawRectangle(80,20,431,215);
+	do Screen.setColor(false);
+	do Screen.drawRectangle(90,30,421,205);
+	do Screen.setColor(true);
+	do Output.moveCursor(3,14);
+	do Output.printString("Scoreboard");
+	do Output.moveCursor(5,14);
+	do Output.printString("Player 1");
+	do player1(1612);
+	do Output.moveCursor(7,16);
+	do Output.printInt(Player1Score);
+
+	do Output.moveCursor(5,42);
+	do Output.printString("Player 2");
+	do player2(1618);
+	do Output.moveCursor(7,44);
+	do Output.printInt(Player2Score);
+	do Sys.wait(3000);
+
+	
+	do Screen.drawRectangle(245,122,265,132);
+	let i = 0;
+	let j = 0;
+	while(~(230 - i = 0)){
+	do Screen.setColor(true);
+	do Screen.drawRectangle(240-i,125-j,260+i,135+j);
+	let i = i + 10;
+	let j = j + 5;
+	}
+	
+	do Screen.setColor(true);
+	do Screen.drawRectangle(0,0,511,255);
+	do Sys.wait(200);
+	do Screen.clearScreen();
+	return;
+}
+
+   
+
+   //Default game setup for Hangman
+   method void drawHangPost()
+   { 
+      do Screen.setColor(true);
+      do Screen.drawRectangle(350, 200, 450, 220);
+      do Screen.drawRectangle(395,50,405,200);
+      do Screen.drawRectangle(300,40,405,50);
+      do Screen.drawRectangle(300,40,310,70);
+	if((turn/2)*2 = turn){
+		do player2(670);}
+		else{
+		do player1(670);
+		}
+      return;
+	}
+   
+   //Verify whole word as the game progresses
+   method boolean isCorrectGuess(char guess)
+   { 
+      var int i,j;
+      let i =0;
+	let j = 0;
+      while(i < solution.length())
+      {
+         if(guess = solution.charAt(i))
+         {
+            do correctGuesses.setCharAt(i, guess);
+		let j = j + 1;
+         }
+         let i=i+1;
+      }
+	if(~(j = 0)){ return -1;}
+      return 0;
+   }
+	
+
+   //Check winning condition
+   method boolean isWin()
+   {
+      var int i;
+      let i = 0;
+      while(i < correctGuesses.length())
+      {
+         if(correctGuesses.charAt(i) = 219)
+         {
+            return 0; 
+         }
+         let i = i+1;
+      }
+      return -1; 
+   }
+
+   method void win()
+   {
+
+	//Y
+	do Screen.drawRectangle(190,54,210,86);
+	do Screen.drawRectangle(170,86,200,90);
+	do Screen.drawRectangle(160,54,180,86);
+	do Screen.drawRectangle(175,90,195,128);
+
+	//O
+	do Screen.drawRectangle(240,124,270,128);
+	do Screen.drawRectangle(230,60,250,124);
+	do Screen.drawRectangle(260,60,280,124);
+	do Screen.drawRectangle(240,54,270,60);
+		
+	//U
+	do Screen.drawRectangle(310,120,340,128);
+	do Screen.drawRectangle(300,54,320,120);
+	do Screen.drawRectangle(330,54,350,120);
+		
+	//W
+	do Screen.drawRectangle(225,137,240,187);
+	do Screen.drawRectangle(215,187,225,209);
+	do Screen.drawRectangle(200,137,215,187);
+	do Screen.drawRectangle(190,187,200,209);
+	do Screen.drawRectangle(175,137,190,187);
+
+	//I
+	do Screen.drawRectangle(256,137,298,145);
+	do Screen.drawRectangle(267,141,287,205);
+	do Screen.drawRectangle(256,201,298,209);
+
+	//N
+	do Screen.drawRectangle(314,137,329,209);
+	do Screen.drawRectangle(329,151,339,166);
+	do Screen.drawRectangle(339,166,349,180);
+	do Screen.drawRectangle(349,180,359,194);
+	do Screen.drawRectangle(359,137,374,209);
+		
+	//!
+	do Screen.drawRectangle(390,151,410,181);
+	do Screen.drawRectangle(395,137,405,194);
+	do Screen.drawRectangle(395,211,405,221);		
+	 
+	do Sys.wait(200);
+	do restart();
+	return;
+}
+
+   
+
+   method void gameover(){
+
+   do Screen.drawRectangle(30, 40, 38, 110);
+      do Screen.drawRectangle(38,102,73,110);
+      do Screen.drawRectangle(65,71,73,102);
+      do Screen.drawRectangle(38,40,73,48);
+      do Screen.drawRectangle(56,71,65,79);
+
+	 do Screen.drawRectangle(93,40,101,110);
+	 do Screen.drawRectangle(101,40,136,48);
+	 do Screen.drawRectangle(128,48,136,110);
+	 do Screen.drawRectangle(101,75,128,83);
+
+	 do Screen.drawRectangle(156,40,164,110);
+	 do Screen.drawRectangle(164,40,199,48);
+	 do Screen.drawRectangle(173,48,181,75);
+	 do Screen.drawRectangle(191,48,199,110);
+
+	 do Screen.drawRectangle(219,40,227,110);
+	 do Screen.drawRectangle(227,40,262,48);
+	 do Screen.drawRectangle(227,69,262,77);
+	 do Screen.drawRectangle(227,102,262,110);
+
+	 do Screen.drawRectangle(93,140,101,210);
+	 do Screen.drawRectangle(101,140,136,148);
+	 do Screen.drawRectangle(128,148,136,210);
+	 do Screen.drawRectangle(101,202,128,210);
+
+	 do Screen.drawRectangle(156,140,164,166);
+	 do Screen.drawRectangle(164,166,172,192);
+	 do Screen.drawRectangle(172,192,180,210);
+	 do Screen.drawRectangle(180,166,188,192);
+	 do Screen.drawRectangle(188,140,196,166);
+
+	 do Screen.drawRectangle(219,140,227,210);
+	 do Screen.drawRectangle(227,140,262,148);
+	 do Screen.drawRectangle(227,170,262,178);
+	 do Screen.drawRectangle(227,202,262,210);
+	
+	 do Screen.drawRectangle(282,140,290,210);
+	 do Screen.drawRectangle(290,140,325,148);
+	 do Screen.drawRectangle(317,148,325,168);
+	 do Screen.drawRectangle(290,168,325,175);
+  	 do Screen.drawRectangle(307,175,315,192);
+	 do Screen.drawRectangle(315,192,323,210);
+	
+	 do Sys.wait(200);
+	 do restart();
+	return;
+	}
+
+   method void restart(){
+	var char a;
+	let a = 0;
+	if((turn/2)*2 = turn){
+	do Sys.wait(200);
+	do Screen.clearScreen();
+	do score();
+	do Screen.clearScreen();
+	do Output.moveCursor(12,3);
+	do Output.printString("PRESS ANY KEY TO PLAY AGAIN!");
+	do Output.moveCursor(19,3);
+	do Output.printString("PRESS Q TO EXIT!");
+	while(a = 0){
+	let a = Keyboard.keyPressed();
+	}
+	if(~(a = 81)){
+	do Screen.clearScreen();
+	do run();}
+	else{ let endGame = -1;}}
+	else{
+	do Screen.clearScreen();
+	do run();}
+	return;
+	}	
+
+   
+   //Main drawing functions
+   method void drawHead()
+   {
+      do Screen.drawCircle(305,90,20);
+      return;
+   }
+   method void drawTorso()
+   {
+      do Screen.drawRectangle(300,90, 310, 160);
+      return;
+   }
+   method void drawRightArm()
+   {
+      do Screen.drawLine(300,135, 340, 120);
+	do Screen.drawLine(300,136, 340, 121);
+      do Screen.drawLine(300,137, 340, 122);
+	do Screen.drawLine(300,138, 340, 123);
+      do Screen.drawLine(300,139, 340, 124);
+	do Screen.drawLine(300,140, 340, 125);
+      return;
+   }
+
+   method void drawLeftArm()
+   {
+      do Screen.drawLine(310,135, 270, 120);
+      do Screen.drawLine(310,136, 270, 121);
+      do Screen.drawLine(310,137, 270, 122);
+      do Screen.drawLine(310,138, 270, 123);
+      do Screen.drawLine(310,139, 270, 124);
+      do Screen.drawLine(310,140, 270, 125);
+      return;
+   }
+   method void drawRightLeg()
+   {
+      do Screen.drawLine(305,157, 325, 177);
+	do Screen.drawLine(305,158, 325, 178);
+      do Screen.drawLine(305,159, 325, 179);
+	do Screen.drawLine(305,160, 325, 180);
+      do Screen.drawLine(305,161, 325, 181);
+	do Screen.drawLine(305,162, 325, 182);
+      return;
+   }
+   method void drawLeftLeg()
+   {
+      do Screen.drawLine(305,157, 285, 177);
+	do Screen.drawLine(305,158, 285, 178);
+      do Screen.drawLine(305,159, 285, 179);
+	do Screen.drawLine(305,160, 285, 180);
+      do Screen.drawLine(305,161, 285, 181);
+	do Screen.drawLine(305,162, 285, 182);
+      return;
+   }
+
+	//Player 1(Frankenstein)
+	method void player1(int location){
+
+	var int memAddress;
+
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 16380);
+	do Memory.poke(memAddress+32, 16386);
+	do Memory.poke(memAddress+64, 22554);
+	do Memory.poke(memAddress+96, 22554);
+	do Memory.poke(memAddress+128, 16386);
+	do Memory.poke(memAddress+160, -1);
+	do Memory.poke(memAddress+192, -18739);
+	do Memory.poke(memAddress+224, -32767);
+	do Memory.poke(memAddress+256, -32767);
+	do Memory.poke(memAddress+288, 32766);
+	do Memory.poke(memAddress+320, 8196);
+	do Memory.poke(memAddress+352, 4104);
+	do Memory.poke(memAddress+384, 10260);
+	do Memory.poke(memAddress+416, 14364);
+	do Memory.poke(memAddress+448, 3024);
+	do Memory.poke(memAddress+480, 3120);
+	return;
+	}
+	
+	//Player 2(Gameboy)
+	method void player2(int location){
+
+	var int memAddress;
+
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 32766);
+	do Memory.poke(memAddress+32, -32767);
+	do Memory.poke(memAddress+64, -16387);
+	do Memory.poke(memAddress+96, -20475);
+	do Memory.poke(memAddress+128, -20475);
+	do Memory.poke(memAddress+160, -20475);
+	do Memory.poke(memAddress+192, -20475);
+	do Memory.poke(memAddress+224, -16387);
+	do Memory.poke(memAddress+256, -32767);
+	do Memory.poke(memAddress+288, -32767);
+	do Memory.poke(memAddress+320, -20431);
+	do Memory.poke(memAddress+352, -20359);
+	do Memory.poke(memAddress+384, -29575);
+	do Memory.poke(memAddress+416, -29647);
+	do Memory.poke(memAddress+448, -32767);
+	do Memory.poke(memAddress+480, 32766);
+	return;
+	}
+
+   //Deallocate Object in Memory.
+   method void dispose()
+   {
+     do Memory.deAlloc(this);
+     return;
+   }
+
+}
